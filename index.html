@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B Vijay Projects</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* HEADER */
+h1 {
+  margin-top: 40px;
+  font-size: 36px;
+  color: #c084fc;
+  text-shadow: 0 0 20px #c084fc;
+}
+
+/* GRID */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  width: 85%;
+  margin-top: 50px;
+}
+
+/* CARDS */
+.card {
+  background: rgba(255,255,255,0.05);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, #c084fc, transparent);
+  animation: rotate 6s linear infinite;
+  top: -50%;
+  left: -50%;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 30px #c084fc;
+}
+
+/* CONTENT ABOVE EFFECT */
+.card * {
+  position: relative;
+  z-index: 1;
+}
+
+/* BUTTON */
+.card a {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #9333ea, #c084fc);
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+.card a:hover {
+  box-shadow: 0 0 15px #c084fc;
+}
+
+/* FOOTER */
+footer {
+  margin-top: auto;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* ANIMATION */
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🚀 My Internship Projects</h1>
+
+<div class="container">
+
+  <!-- TASK 1 -->
+  <div class="card">
+    <h2>🧠 Quiz Application</h2>
+    <p>Interactive quiz with dynamic questions and scoring system.</p>
+    <a href="task1/">Open</a>
+  </div>
+
+  <!-- TASK 2 -->
+  <div class="card">
+    <h2>💬 Real-Time Chat</h2>
+    <p>Live chat application with real-time messaging interface.</p>
+    <a href="task2/">Open</a>
+  </div>
+
+  <!-- TASK 3 -->
+  <div class="card">
+    <h2>👤 Portfolio</h2>
+    <p>Personal portfolio showcasing skills and projects.</p>
+    <a href="task3/">Open</a>
+  </div>
+
+  <!-- TASK 4 -->
+  <div class="card">
+    <h2>📚 E-Learning Platform</h2>
+    <p>Course UI with video learning and progress tracking.</p>
+    <a href="task4/">Open</a>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 B Vijay | CodTech Internship
+</footer>
+
+</body>
+</html>
