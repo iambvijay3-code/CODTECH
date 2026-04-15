@@ -1,1 +1,172 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz App</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: white;
+}
+
+/* QUIZ BOX */
+.quiz-container {
+  width: 350px;
+  background: rgba(255,255,255,0.05);
+  padding: 25px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px #c084fc;
+  animation: fadeIn 1s ease;
+}
+
+/* QUESTION */
+#question {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+/* OPTIONS */
+.option {
+  display: block;
+  background: #111;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.option:hover {
+  background: #9333ea;
+  transform: scale(1.05);
+}
+
+/* BUTTON */
+button {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #c084fc;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 0 0 15px #c084fc;
+}
+
+/* RESULT */
+#result {
+  text-align: center;
+  font-size: 22px;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.8);}
+  to {opacity: 1; transform: scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+  <h2 id="question">Question</h2>
+  <div id="options"></div>
+  <button onclick="nextQuestion()">Next</button>
+  <div id="result"></div>
+</div>
+
+<script>
+const quizData = [
+  {
+    question: "What is DevOps?",
+    options: ["Programming Language", "Culture & Practice", "Database", "Operating System"],
+    answer: "Culture & Practice"
+  },
+  {
+    question: "Which tool is used for CI/CD?",
+    options: ["Docker", "Kubernetes", "Jenkins", "Linux"],
+    answer: "Jenkins"
+  },
+  {
+    question: "Which service is cloud?",
+    options: ["AWS", "HTML", "CSS", "Python"],
+    answer: "AWS"
+  },
+  {
+    question: "Which is container tool?",
+    options: ["Docker", "Git", "Linux", "Jenkins"],
+    answer: "Docker"
+  }
+];
+
+let currentQuestion = 0;
+let score = 0;
+let selected = null;
+
+function loadQuestion() {
+  let q = quizData[currentQuestion];
+  document.getElementById("question").innerText = q.question;
+
+  let optionsHTML = "";
+  q.options.forEach(opt => {
+    optionsHTML += `<div class="option" onclick="selectOption(this,'${opt}')">${opt}</div>`;
+  });
+
+  document.getElementById("options").innerHTML = optionsHTML;
+}
+
+function selectOption(element, answer) {
+  selected = answer;
+
+  let options = document.querySelectorAll(".option");
+  options.forEach(opt => opt.style.background = "#111");
+
+  element.style.background = "#9333ea";
+}
+
+function nextQuestion() {
+  if (!selected) {
+    alert("Please select an option!");
+    return;
+  }
+
+  if (selected === quizData[currentQuestion].answer) {
+    score++;
+  }
+
+  selected = null;
+  currentQuestion++;
+
+  if (currentQuestion < quizData.length) {
+    loadQuestion();
+  } else {
+    document.querySelector(".quiz-container").innerHTML =
+      `<div id="result">🎉 Your Score: ${score}/${quizData.length}</div>`;
+  }
+}
+
+loadQuestion();
+</script>
+
+</body>
+  </html>
